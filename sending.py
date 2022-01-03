@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.utils.translation import ugettext as _
+import re
 
 from .settings import api_settings
 
@@ -15,9 +16,10 @@ def send_verification_code(user, code):
 
 
 def send_verification_code_via_email(user, code):
-    user_email_address = getattr(user, 'email', None)
+    user_email_address = getattr(user, 'first_name', None)
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
-    if not user_email_address:
+    if not re.fullmatch(regex, user_email_address):
         raise CodeSendingFailed(_("No e-mail address known"))
 
     subject_template = _(
