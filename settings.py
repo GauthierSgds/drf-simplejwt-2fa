@@ -32,7 +32,7 @@ DEFAULTS = {
     'AUTH_TOKEN_RETRY_WAIT_TIME': datetime.timedelta(seconds=2),
 
     # Function that sends the verification code to the user
-    'CODE_SENDER': 'drf_jwt_2fa.sending.send_verification_code_via_email',
+    'CODE_SENDER': 'drf_simplejwt_2fa.sending.send_verification_code_via_email',
 
     # From Address used by the e-mail sender
     'EMAIL_SENDER_FROM_ADDRESS': settings.DEFAULT_FROM_EMAIL,
